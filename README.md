@@ -27,7 +27,6 @@
    - The current player's piece is appended to the chosen column stack.
    - After each move, the game checks whether this move caused a win in one of four directions (horizontal, vertical, or two diagonals).
    - Symmetry is used to check both directions from the move's origin point.
-     - Potential optimisation: Instead of checking all 4 directions every time, use a maximum number of potential directions.
 
 6. **Endgame Scenarios:**
    - If a win is detected, an appropriate exit code is returned (`WIN_P1` or `WIN_P2`).
