@@ -185,9 +185,6 @@ class ParseFile:
         """
         Read the first line and extract board configuration.
 
-        Args:
-            path (str): File path to the input file.
-
         Returns:
             tuple(int, int, int) or int: (X, Y, Z) if valid, else error code.
         """
@@ -229,6 +226,16 @@ class ParseFile:
     
 
 def process_game_file(path: str):
+    """
+    The main program, brings together the OOP framework and returns exit codes.
+
+    Args:
+        path (str): path/to/file 
+    
+    Returns:
+        exit codes (int) : codes supplied by the problem specification
+
+    """
     parser = ParseFile(path)
     result = parser.get_config()
     if isinstance(result, int): # check the configuration format is correct
