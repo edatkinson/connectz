@@ -22,8 +22,8 @@ class Board:
         Initialize the board with X columns and Y rows.
         
         Args:
-            X (int): Number of columns.
-            Y (int): Number of rows.
+            X (int): Number of columns (width).
+            Y (int): Number of rows (height).
         """
         self.X = X
         self.Y = Y
@@ -56,7 +56,7 @@ class Board:
         Returns:
             bool: True if the move wins the game, False otherwise.
         """
-        directions = [(1, 0), (0, 1), (1, 1), (1, -1)]
+        directions = [(1, 0), (0, 1), (1, 1), (1, -1)] # unit vectors for the four differen't directions which winning combinations are made
         for dx, dy in directions:
             if self.__check_direction(col, row, dx, dy, player, Z):
                 return True
@@ -77,7 +77,7 @@ class Board:
         Returns:
             bool: True if enough consecutive pieces are found.
         """
-        count = 1
+        count = 1 # exclude the recent position, because we already know it is counted, saves computation.
         count += self.__count_direction(x, y, dx, dy, player)
         count += self.__count_direction(x, y, -dx, -dy, player)
         return count >= Z
@@ -98,8 +98,8 @@ class Board:
         """
         cx, cy = x + dx, y + dy
         count = 0
-        while 0 <= cx < self.X and 0 <= cy < len(self.board[cx]):
-            if self.board[cx][cy] != player: # dont check directions which aren't the players counters
+        while 0 <= cx < self.X and 0 <= cy < len(self.board[cx]): # check exploration does not exceed the boundaries of the board
+            if self.board[cx][cy] != player: # dont check the directions which aren't the players counters
                 break
             count += 1
             cx += dx
@@ -113,7 +113,7 @@ class Board:
         Returns:
             bool: True if all columns are full, False otherwise.
         """
-        return all(len(col) >= self.Y for col in self.board)
+        return all(len(col) >= self.Y for col in self.board) #check the length is smaller than height Y for all columns
 
 
 class Game:
@@ -251,7 +251,7 @@ def process_game_file(path: str):
             
         parser.close()
 
-        if game.winner is not None:
+        if game.winner is not None: 
             return game.winner
         if game.is_draw():
             return DRAW

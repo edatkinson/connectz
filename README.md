@@ -33,6 +33,11 @@
    - If all columns are full and no win, it's a draw (`DRAW`).
    - If the file ends before a result, it's considered incomplete (`INCOMPLETE`).
 
+7. **Testing**
+   - `Game()` class is set up to be compatible with unittests. The game can be simulated using the method .play_move(move: int), where the move is the integer which is supplied by the file. This is an example of why OOP is useful and beneficial. Some simple example tests are shown in `test_connectz.py`
+  - Furthermore, modularity improves debugging time and readability. 
+  
+
 ---
 
 ## Exit Codes
